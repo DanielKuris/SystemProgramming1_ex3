@@ -56,36 +56,43 @@ StrList* StrList= StrList_alloc();
     switch (input)
     {
     case 1:
-             printf("Enter size of the array: ");
-                scanf("%d", &index);
+        scanf("%d", &words); //Get amount of words
             
-             char *str = inputString(index); //Get input using helper function
-             StrList_insertLast(StrList, str);
-             free(str)
-             
-        scanf(" %d",&input);
+        char *str = inputString(words); //Get input using helper function
+        StrList_insertLast(StrList, str);
+        free(str)
+
+        scanf(" %d",&input); //Get next operation
         break;
     
 
     case 2:
         scanf(" %d",&index);
         StrList_insertAt(StrList, str[index], index);
+
+        scanf(" %d",&input); //Get next operation
         break;
 
 
     case 3:
-       StrList_print(StrList);
+        StrList_print(StrList);
+
+        scanf(" %d",&input); //Get next operation
         break;
 
 
      case 4:
-       printf(" %d",StrList_printLen(StrList));
+        printf(" %d",StrList_printLen(StrList));
+
+        scanf(" %d",&input); //Get next operation
         break;
 
 
     case 5:
-       scanf(" %d",&index);
-       StrList_printAt(StrList,index);
+        scanf(" %d",&index);
+        StrList_printAt(StrList,index);
+
+        scanf(" %d",&input); //Get next operation
         break;
 
 
