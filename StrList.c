@@ -72,13 +72,15 @@ void StrList_insertLast(StrList* StrList, const char* data){
             (current->_next)=newNode;
         }
         while (current->_next != NULL) { // Change 2
+
+            current = current->_next;
+
             if(current->_next == NULL)
             {
                 current->_next = newNode;
                 printf("added later\n");
                 break; // Change 3
             }
-            current = current->_next;
         };
     }
 }
@@ -105,7 +107,12 @@ void StrList_print(const StrList* StrList){
 }
 
 void StrList_printAt(const StrList* Strlist,int index){
-
+ Node* current = Strlist->_head;
+	for (int i = 0; i <= index; i++)
+	{
+		current = current->_next;
+	}
+	printf("(%s)->",current->_data);
 }
 
 int StrList_printLen(const StrList* StrList){
@@ -121,8 +128,21 @@ int StrList_printLen(const StrList* StrList){
     return totalLength;
 }
 
-int StrList_count(StrList* StrList, const char* data){
-   return 0;
+int StrList_count(StrList *StrList, const char *data)
+{
+    int count = 0;
+    Node *current = StrList->_head;
+    char *str = StrList->_head->_data;
+    while (current!= NULL)
+    {
+        if (strcmp(str, data) == 0)
+        {
+            count++;
+        }
+        current = current->_next;
+        str = current->_data;
+    }
+    return count;
 }
 
 void StrList_remove(StrList* StrList, const char* data){
