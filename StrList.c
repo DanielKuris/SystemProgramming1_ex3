@@ -78,7 +78,6 @@ void StrList_insertLast(StrList* StrList, const char* data){
             if(current->_next == NULL)
             {
                 current->_next = newNode;
-                printf("added later\n");
                 break; // Change 3
             }
         };
@@ -87,9 +86,37 @@ void StrList_insertLast(StrList* StrList, const char* data){
     
    
 
-void StrList_insertAt(StrList* StrList, const char* data,int index){
-
+// Function to insert a new node at the given index
+void StrList_insertAt(StrList* StrList, const char* data, int index) {
+    if (index < 0) {
+        printf("Invalid index\n");
+        return;
     }
+
+    Node* newNode = createNode(data);
+
+    if (index == 0) { // Insert at the beginning of the list
+        newNode->_next = StrList->_head;
+        StrList->_head = newNode;
+    } else {
+        Node* current = StrList->_head;
+        for (int i = 0; i < index; i++) {
+            if (current == NULL) {
+            printf("Invalid index\n");
+            free(newNode->_data);
+            free(newNode);
+            return;
+        }
+            current = current->_next;
+        }
+
+        Node* prev = current; 
+        current = current->_next;
+        newNode->_next = current->_next;
+        prev->_next = newNode;
+    }
+
+}
 
 char* StrList_firstData(const StrList* StrList) {
     if (StrList == NULL || StrList->_size == 0 || StrList->_head == NULL) {
@@ -116,16 +143,16 @@ void StrList_printAt(const StrList* Strlist,int index){
 }
 
 int StrList_printLen(const StrList* StrList){
-   const Node* p= StrList->_head;
-   int totalLength =0 ;
+   size_t totalChars = 0;
+    Node* current = StrList->_head;
 
-   while (p){ 
-    char buffer[32]; // Adjust the size accordingly
-        snprintf(buffer, sizeof(buffer), "%s", p->_data);
-        totalLength = totalLength+ strlen(buffer);
-        p = p->_next;
+    while (current != NULL) {
+        // Iterate through each node and add the length of its string to the total
+        totalChars += strlen(current->_data);
+        current = current->_next;
     }
-    return totalLength;
+
+    return totalChars;
 }
 
 int StrList_count(StrList *StrList, const char *data)
