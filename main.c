@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "StrList.h"
-#include "StrList.c"
 #define SIZE 10
 
 // Helper function to get story input
@@ -8,7 +7,7 @@
 // Running until recieved "words" amount of words.
 char *inputString(size_t words) {
 
-    size_t size = 10; // Start with some initial size
+    size_t size = SIZE; // Start with some initial size
     char *str = (char *)malloc(size * sizeof(char));
     if (str == NULL) {
         printf("Memory allocation failed\n");
@@ -55,70 +54,72 @@ StrList* StrList= StrList_alloc();
 
     switch (input)
     {
-    case 1:
+    case 1: //Setting list with "words" amount of words
         scanf("%d", &words); //Get amount of words
             
         char *str = inputString(words); //Get input using helper function
         StrList_insertLast(StrList, str);
-        free(str)
+        free(str);
 
-        scanf(" %d",&input); //Get next operation
         break;
     
 
-    case 2:
+    case 2: //Insert str at given index in list
         scanf(" %d",&index);
-        StrList_insertAt(StrList, str[index], index);
-
-        scanf(" %d",&input); //Get next operation
+        char *str = inputString(1); //Get input using helper function
+        StrList_insertAt(StrList, str, index);
+        free(str);
         break;
 
 
-    case 3:
+    case 3: //Print the list's content
         StrList_print(StrList);
 
-        scanf(" %d",&input); //Get next operation
         break;
 
 
-     case 4:
-        printf(" %d",StrList_printLen(StrList));
+     case 4: //Print the amount of nodes in the list
+        printf(" %d",StrList_size(StrList));
 
-        scanf(" %d",&input); //Get next operation
         break;
 
 
-    case 5:
+    case 5: //Print data of a node at location index
         scanf(" %d",&index);
         StrList_printAt(StrList,index);
 
-        scanf(" %d",&input); //Get next operation
         break;
 
 
-    case 6:
-     //  scanf(" %s", data);
-      // StrList_count(StrList, data);
+    case 6: //Print the amount of chars in the list
+        printf(" %d",StrList_printLen(StrList));
+
         break;
 
 
-  // case 7:
-   //print how many times the str
-   
-    case 8:
-     //  scanf(" %s", &data);
-      // StrList_remove(StrList, data);
+    case 7: //Print how many times a string appears in the list
+        char *str = inputString(1); // Get input using helper function
+        printf(" %d", StrList_count(StrList, str)); 
+
+        break;
+
+    case 8: //Delete a string completely from the list
+        char *str = inputString(1); // Get input using helper function
+        StrList_remove(StrList, str);
+
         break;
 
 
-    case 9:
-       scanf(" %d",&index);
-       StrList_removeAt(StrList, index);
+    case 9: //Delete the node at location index
+        scanf(" %d",&index);
+        StrList_removeAt(StrList, index);
+
         break;
 
 
-    case 10:
-      StrList_reverse(StrList);
+    case 10: //Reverse the list
+        StrList_reverse(StrList);
+
         break; 
 
 
@@ -128,12 +129,12 @@ StrList* StrList= StrList_alloc();
         break;
 
 
-    case 12:
+    case 12: //Sort the list in a lexicographic order
        StrList_sort(StrList);
         break; 
 
 
-    case 13:
+    case 13: //Returning 1 if sorted and 0 if not (lexicographic order)
        StrList_isSorted(StrList);
         break;                                
     }
