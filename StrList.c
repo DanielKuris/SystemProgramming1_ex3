@@ -151,7 +151,7 @@ void StrList_print(const StrList* StrList){
 
 void StrList_printAt(const StrList* Strlist,int index){
  Node* current = Strlist->_head;
-	for (int i = 0; i <= index; i++)
+	for (int i = 0; i < index; i++)
 	{
 		current = current->_next;
 	}

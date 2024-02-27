@@ -78,14 +78,14 @@ int main(){
 
 
     case 5: //Print data of a node at location index
-        scanf(" %d",&index);
+        scanf("%d",&index);
         StrList_printAt(StrList,index);
 
         break;
 
 
     case 6: //Print the amount of chars in the list
-        printf(" %d",StrList_printLen(StrList));
+        printf("%d",StrList_printLen(StrList));
         printf("\n");
 
 
