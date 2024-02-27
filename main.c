@@ -14,8 +14,8 @@ char *inputString() {
     }
 
     size_t len = 0; // Current amount of chars (used memory)
-    int ch; // Current input char (stored as an integer)
-    while ((ch = getchar()) != ' ' && ch != '\n') {
+    char ch; // Current input char (stored as an integer)
+    while ((scanf(" %c", &ch)) != ' ' && ch != '\n') {
         str[len++] = (char) ch; // Convert integer to character and store in the string
         if (len == size) { // Increasing memory allocation if reached the previous one
             size *= 2;
