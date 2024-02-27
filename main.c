@@ -5,7 +5,7 @@
 // Helper function to get story input
 // Reading input of unknown length of strings
 // Running until recieved "words" amount of words.
-char *inputString(size_t words) {
+char *inputString() {
 
     size_t size = SIZE; // Start with some initial size
     char *str = (char *)malloc(size * sizeof(char));
@@ -15,30 +15,16 @@ char *inputString(size_t words) {
     }
 
     size_t len = 0; //Current amount of chars (used memory)
-    size_t wordCount = 0; //Current amount of words
     char ch; //Current input char
-    while (wordCount < words) {
+    while (!(ch == ' ' || ch == '\n')) {
         ch = getchar();
-        if (ch == ' ' || ch == '\n') {
-                str[len++] = ch;
-                wordCount++;
-                if (len == size) { //Increasing memory allocation if reached the previous one
-                    size *= 2;
-                    str = (char *)realloc(str, size * sizeof(char));
-                    if (str == NULL) {
-                        printf("Memory reallocation failed\n");
-                        exit(EXIT_FAILURE);
-                }
-            }
-        } else {
-            str[len++] = ch;
-            if (len == size) { //Increasing memory allocation if reached the previous one
-                size *= 2;
-                str = (char *)realloc(str, size * sizeof(char));
-                if (str == NULL) {
-                    printf("Memory reallocation failed\n");
-                    exit(EXIT_FAILURE);
-                }
+        str[len++] = ch;
+        if (len == size) { //Increasing memory allocation if reached the previous one
+            size *= 2;
+            str = (char *)realloc(str, size * sizeof(char));
+            if (str == NULL) {
+                printf("Memory reallocation failed\n");
+                exit(EXIT_FAILURE);
             }
         }
     }
@@ -62,17 +48,19 @@ int main(){
     case 1: //Setting list with "words" amount of words
         int words;
         scanf(" %d", &words); //Get amount of words
-            
-        str = inputString(words); //Get input using helper function
-        StrList_insertLast(StrList, str);
-        free(str);
+        
+        for(int word = 0; word<words; word++){
+            str = inputString(); //Get input using helper function
+            StrList_insertLast(StrList, str);
+            free(str);
+        }
 
         break;
     
 
     case 2: //Insert str at given index in list
         scanf(" %d",&index);
-        str = inputString(1); //Get input using helper function
+        str = inputString(); //Get input using helper function
         StrList_insertAt(StrList, str, index);
         free(str);
         break;
@@ -104,14 +92,14 @@ int main(){
 
 
     case 7: //Print how many times a string appears in the list
-        str = inputString(1); // Get input using helper function
+        str = inputString(); // Get input using helper function
         printf(" %d", StrList_count(StrList, str)); 
         free(str);
 
         break;
 
     case 8: //Delete a string completely from the list
-        str = inputString(1); // Get input using helper function
+        str = inputString(); // Get input using helper function
         StrList_remove(StrList, str);
         free(str);
 
