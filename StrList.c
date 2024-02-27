@@ -291,9 +291,11 @@ void StrList_reverse( StrList* StrList){
         // Move pointers one position ahead.
         prev = current;
         current = next;
+        if(!(current->_next))
+            StrList->_head = current; // New head of the reversed list
     }
 
-    StrList->_head = current; // New head of the reversed list
+    
 }
 
 
