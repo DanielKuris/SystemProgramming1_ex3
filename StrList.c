@@ -62,6 +62,8 @@ void StrList_insertLast(StrList* StrList, const char* data){
 
     if (StrList->_head == NULL) {
         StrList->_head = newNode;
+        StrList->_size++;
+        return;
     }
 
     //check if newNode should be the first elemnt
@@ -70,6 +72,8 @@ void StrList_insertLast(StrList* StrList, const char* data){
         Node *current = StrList->_head;
         if(current->_next == NULL){
             (current->_next)=newNode;
+            StrList->_size++;
+            return;
         }
         while (current->_next != NULL) { // Change 2
 
@@ -78,6 +82,7 @@ void StrList_insertLast(StrList* StrList, const char* data){
             if(current->_next == NULL)
             {
                 current->_next = newNode;
+                StrList->_size++;
                 break; // Change 3
             }
         };
@@ -98,6 +103,8 @@ void StrList_insertAt(StrList* StrList, const char* data, int index) {
     if (index == 0) { // Insert at the beginning of the list
         newNode->_next = StrList->_head;
         StrList->_head = newNode;
+        StrList->_size++;
+        return;
     } else {
         Node* current = StrList->_head;
         for (int i = 0; i < index; i++) {
@@ -114,6 +121,7 @@ void StrList_insertAt(StrList* StrList, const char* data, int index) {
         current = current->_next;
         newNode->_next = current->_next;
         prev->_next = newNode;
+        StrList->_size++;
     }
 
 }
@@ -182,10 +190,12 @@ char *str = StrList->_head->_data;
 			if (prev == NULL) {
 					// If the match is in the first node
 					StrList->_head = p->_next;
+                    StrList->_size--;
 				}
 			else {
 				// If the match is in a subsequent node
 					prev->_next = p->_next;
+                    StrList->_size--;
 				}
 
 				// Free the memory allocated for the string
@@ -207,10 +217,12 @@ void StrList_removeAt(StrList* StrList, int index){
 			if (prev == NULL) {
 					// If the match is in the first node
 					StrList->_head = p->_next;
+                    StrList->_size--;
 				}
 			else {
 				// If the match is in a subsequent node
 				prev->_next = p->_next;
+                StrList->_size--;
 				}
 
 				// Free the memory allocated for the string

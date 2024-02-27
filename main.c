@@ -42,7 +42,7 @@ char *inputString(size_t words) {
 }
 
 int main(){
-StrList* StrList= StrList_alloc();
+   StrList* StrList= StrList_alloc();
    int input;
    char str[SIZE];
    int index;
@@ -123,9 +123,10 @@ StrList* StrList= StrList_alloc();
         break; 
 
 
-    case 11:
-    //should remove all the list- need to be fixed
-       StrList_remove(StrList, NULL);
+    case 11: //Delete the list
+        StrList_free(StrList);
+        StrList= StrList_alloc();
+
         break;
 
 
