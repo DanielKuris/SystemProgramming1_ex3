@@ -284,7 +284,7 @@ void StrList_reverse( StrList* StrList){
         return;
 
     Node *prev = StrList->_head; //We have at least 2 elements
-    Node *current = prev->_next;
+    Node *current = prev->_next; //The second element
 
     if(!(current->_next)){ //Third element is null
         prev->_next = NULL;
@@ -293,14 +293,10 @@ void StrList_reverse( StrList* StrList){
     
     Node *next = current->_next; //We have at least 3 elements
 
-    Node *skipIteration = next; //Save 3rd element
+    Node *saveHead = StrList->_head; //Save 3rd element
 
-    // First iteration
-    prev->_next = NULL;
-    current->_next = prev;
-    next->_next = current;
-
-    current = skipIteration; // Skip first iteration
+    current = StrList->_head;
+    //current enters as first element
     while (current->_next != NULL) {
         prev = current;
         current = current->_next;
@@ -310,9 +306,12 @@ void StrList_reverse( StrList* StrList){
         current = next;
     }
 
-    current->_next = prev;
+    // Last iteration
+    saveHead->_next = NULL; //Deal with first element
 
-    return current; // New head of the reversed list
+    current->_next = prev; //Deal with last element
+
+    StrList->_head = current; // New head of the reversed list
 }
 
 
