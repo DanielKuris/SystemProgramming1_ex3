@@ -301,8 +301,8 @@ void StrList_reverse( StrList* StrList){
     current = current->_next; // Skip first iteration
     while (current->_next != NULL) {
         prev = current;
-        current = current->next;
-        next = current->next;   
+        current = current->_next;
+        next = current->_next;   
 
         current->_next = prev;
         current = next;
