@@ -136,9 +136,10 @@ char* StrList_firstData(const StrList* StrList) {
 void StrList_print(const StrList* StrList){
     const Node* p = StrList->_head;
     while(p){
-        printf(" %s",p->_data);
+        printf("%s",p->_data);
         p = p->_next;
     }
+    printf("\n");
 }
 
 void StrList_printAt(const StrList* Strlist,int index){
