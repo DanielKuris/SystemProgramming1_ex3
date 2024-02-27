@@ -135,10 +135,17 @@ char* StrList_firstData(const StrList* StrList) {
 
 void StrList_print(const StrList* StrList){
     const Node* p = StrList->_head;
+
+    if(!p)
+       return;
+    
+    printf("%s",p->_data);//Print the first element without space
+    p = p->_next;
     while(p){
-        printf("%s",p->_data);
+        printf(" %s",p->_data);
         p = p->_next;
     }
+
     printf("\n");
 }
 

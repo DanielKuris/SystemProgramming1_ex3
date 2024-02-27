@@ -70,7 +70,7 @@ int main(){
 
 
      case 4: //Print the amount of nodes in the list
-        printf(" %zu",StrList_size(StrList));
+        printf("%zu",StrList_size(StrList));
         printf("\n");
 
 
