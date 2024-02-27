@@ -20,8 +20,16 @@ char *inputString(size_t words) {
     while (wordCount < words) {
         ch = getchar();
         if (ch == ' ' || ch == '\n') {
-                str[len++] = ' ';
+                str[len++] = ch;
                 wordCount++;
+                if (len == size) { //Increasing memory allocation if reached the previous one
+                    size *= 2;
+                    str = (char *)realloc(str, size * sizeof(char));
+                    if (str == NULL) {
+                        printf("Memory reallocation failed\n");
+                    e   xit(EXIT_FAILURE);
+                }
+            }
         } else {
             str[len++] = ch;
             if (len == size) { //Increasing memory allocation if reached the previous one
