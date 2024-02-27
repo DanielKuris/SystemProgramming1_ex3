@@ -107,7 +107,7 @@ void StrList_insertAt(StrList* StrList, const char* data, int index) {
         return;
     } else {
         Node* current = StrList->_head;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index -1; i++) {
             if (current == NULL) {
             printf("Invalid index\n");
             free(newNode->_data);
@@ -274,22 +274,46 @@ StrList* StrList_clone(const StrList* StringList){
 
 
 void StrList_reverse( StrList* StrList){
-    Node* prev = NULL;
-    Node* current = StrList->_head;
-    Node* next = NULL;
-    while (current != NULL) {
-        // Store next
-        next = StrList->_head->_next;
- 
-        // Reverse current node's pointer
-        StrList->_head->_next = prev;
- 
-        // Move pointers one position ahead.
+
+    if(!(StrList->_head)) //First element is null
+        return;
+
+    
+    
+    if(!(StrList->_head->_next)) //Second element is null
+        return;
+
+    Node *prev = StrList->_head; //We have at least 2 elements
+    Node *current = prev->_next;
+
+    if(!(current->_next)){ //Third element is null
+        prev->_next = NULL;
+        current->_next = prev;
+    }
+    
+    Node *next = current->_next; //We have at least 3 elements
+
+    // First iteration
+    prev->_next = NULL;
+    current->_next = prev;
+    next->_next = current;
+
+    current = current->_next; // Skip first iteration
+    while (current->_next != NULL) {
         prev = current;
+        current = current->next;
+        next = current->next;   
+
+        current->_next = prev;
         current = next;
     }
-    StrList->_head = prev;
+
+    current->_next = prev;
+
+    return current; // New head of the reversed list
 }
+
+
 
 void StrList_sort(StrList* StrList) {
     if (StrList == NULL || StrList->_size <= 1) {
