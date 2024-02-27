@@ -49,8 +49,8 @@ int main(){
 
    
    do {
-    scanf(" %d", &input);
-    if (input==0) return 0;
+
+    scanf(" %d", &input); //Get operation
 
     switch (input)
     {
@@ -134,16 +134,22 @@ int main(){
 
 
     case 12: //Sort the list in a lexicographic order
-       StrList_sort(StrList);
+        StrList_sort(StrList);
         break; 
 
 
     case 13: //Returning 1 if sorted and 0 if not (lexicographic order)
        StrList_isSorted(StrList);
-        break;                                
+        break; 
+
+
+    case 0: //Exiting the program
+        StrList_free(StrList);
+        break;
+
     }
    }
-   while(input!=0);
+   while(input!=0); //Do operation while the chosen operation is not 0
    
  return 0;
 }
