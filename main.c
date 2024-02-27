@@ -16,7 +16,7 @@ char *inputString(size_t words) {
 
     size_t len = 0;
     size_t wordCount = 0;
-    int ch;
+    char ch;
     while (wordCount < words) {
         ch = getchar();
         if (ch == ' ' || ch == '\n') {
