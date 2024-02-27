@@ -107,7 +107,7 @@ void StrList_insertAt(StrList* StrList, const char* data, int index) {
         return;
     } else {
         Node* current = StrList->_head;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index -1; i++) {
             if (current == NULL) {
             printf("Invalid index\n");
             free(newNode->_data);
@@ -155,7 +155,7 @@ void StrList_printAt(const StrList* Strlist,int index){
 	{
 		current = current->_next;
 	}
-	printf(" %s",current->_data);
+	printf("%s",current->_data);
     printf("\n");
 }
 

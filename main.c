@@ -78,7 +78,7 @@ int main(){
 
 
     case 5: //Print data of a node at location index
-        scanf("%d",&index);
+        scanf(" %d",&index);
         StrList_printAt(StrList,index);
 
         break;
