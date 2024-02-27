@@ -14,16 +14,15 @@ char *inputString(size_t words) {
         exit(EXIT_FAILURE);
     }
 
-    size_t len = 0; //Current amount of chars
+    size_t len = 0; //Current amount of chars (used memory)
     size_t wordCount = 0; //Current amount of words
     char ch; //Current input char
     while (wordCount < words) {
         ch = getchar();
         if (ch == ' ' || ch == '\n') {
             if (len > 0) {
-                str[len++] = '\0'; // Null-terminate the word
+                str[len++] = ' ';
                 wordCount++;
-                len = 0; // Reset the length for the next word
             }
         } else {
             str[len++] = ch;
