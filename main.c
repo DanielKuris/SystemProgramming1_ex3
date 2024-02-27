@@ -135,15 +135,14 @@ int main(){
 
 
     case 13: //Returning 1 if sorted and 0 if not (lexicographic order)
-       if(StrList_isSorted(StrList))
+       if(StrList_isSorted(StrList)){
             printf("true");
             printf("\n");
-
-        else
+        }else{
             printf("false");
             printf("\n");
-
-
+        }
+            
         break; 
 
 
