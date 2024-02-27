@@ -14,9 +14,9 @@ char *inputString(size_t words) {
         exit(EXIT_FAILURE);
     }
 
-    size_t len = 0;
-    size_t wordCount = 0;
-    char ch;
+    size_t len = 0; //Current amount of chars
+    size_t wordCount = 0; //Current amount of words
+    char ch; //Current input char
     while (wordCount < words) {
         ch = getchar();
         if (ch == ' ' || ch == '\n') {
@@ -56,7 +56,7 @@ int main(){
     {
     case 1: //Setting list with "words" amount of words
         int words;
-        scanf("%d", &words); //Get amount of words
+        scanf(" %d", &words); //Get amount of words
             
         str = inputString(words); //Get input using helper function
         StrList_insertLast(StrList, str);
