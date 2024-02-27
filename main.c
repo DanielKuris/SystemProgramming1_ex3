@@ -6,7 +6,6 @@
 // Reading input of unknown length of strings
 // Running until recieved "words" amount of words.
 char *inputString() {
-
     size_t size = SIZE; // Start with some initial size
     char *str = (char *)malloc(size * sizeof(char));
     if (str == NULL) {
@@ -14,12 +13,11 @@ char *inputString() {
         exit(EXIT_FAILURE);
     }
 
-    size_t len = 0; //Current amount of chars (used memory)
-    char ch; //Current input char
-    while (!(ch == ' ' || ch == '\n')) {
-        ch = getchar();
-        str[len++] = ch;
-        if (len == size) { //Increasing memory allocation if reached the previous one
+    size_t len = 0; // Current amount of chars (used memory)
+    int ch; // Current input char (stored as an integer)
+    while ((ch = getchar()) != ' ' && ch != '\n') {
+        str[len++] = (char) ch; // Convert integer to character and store in the string
+        if (len == size) { // Increasing memory allocation if reached the previous one
             size *= 2;
             str = (char *)realloc(str, size * sizeof(char));
             if (str == NULL) {
@@ -28,9 +26,10 @@ char *inputString() {
             }
         }
     }
-    str[len] = '\0'; // Null-terminate the last word
+    str[len] = '\0'; // Null-terminate the string
     return str;
 }
+
 
 int main(){
    StrList* StrList= StrList_alloc();
