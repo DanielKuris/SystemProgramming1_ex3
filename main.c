@@ -55,11 +55,13 @@ int main(){
     switch (input)
     {
     case 1: //Setting list with "words" amount of words
+        int words;
         scanf("%d", &words); //Get amount of words
             
         char *str = inputString(words); //Get input using helper function
         StrList_insertLast(StrList, str);
         free(str);
+        free(words);
 
         break;
     
@@ -79,7 +81,7 @@ int main(){
 
 
      case 4: //Print the amount of nodes in the list
-        printf(" %d",StrList_size(StrList));
+        printf(" %zu",StrList_size(StrList));
 
         break;
 
