@@ -283,10 +283,10 @@ void StrList_reverse( StrList* StrList){
     //current enters as first element
     while (current!= NULL) {
         // Store next
-        next = current->next;
+        next = current->_next;
  
         // Reverse current node's pointer
-        current->next = prev;
+        current->_next = prev;
  
         // Move pointers one position ahead.
         prev = current;
