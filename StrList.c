@@ -275,7 +275,7 @@ StrList* StrList_clone(const StrList* StringList){
 
 void StrList_reverse( StrList* StrList){
 
-    if(!(StrList->_head)) //First element is null
+    if (!StrList || !(StrList->_head)) // Check if the list or head is null
         return;
 
     
@@ -293,12 +293,14 @@ void StrList_reverse( StrList* StrList){
     
     Node *next = current->_next; //We have at least 3 elements
 
+    Node *skipIteration = next; //Save 3rd element
+
     // First iteration
     prev->_next = NULL;
     current->_next = prev;
     next->_next = current;
 
-    current = current->_next; // Skip first iteration
+    current = skipIteration; // Skip first iteration
     while (current->_next != NULL) {
         prev = current;
         current = current->_next;
