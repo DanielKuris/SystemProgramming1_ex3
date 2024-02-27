@@ -107,19 +107,19 @@ void StrList_insertAt(StrList* StrList, const char* data, int index) {
         return;
     } else {
         Node* current = StrList->_head;
-        for (int i = 0; i < index -1; i++) {
+        for (int i = 0; i < index; i++) {
             if (current == NULL) {
             printf("Invalid index\n");
             free(newNode->_data);
             free(newNode);
             return;
-        }
+            }
             current = current->_next;
         }
 
         Node* prev = current; 
         current = current->_next;
-        newNode->_next = current->_next;
+        newNode->_next = current;
         prev->_next = newNode;
         StrList->_size++;
     }
