@@ -97,14 +97,11 @@ int main(){
         printf(" %d", StrList_count(StrList, str)); 
         printf("\n");
 
-        free(str);
-
         break;
 
     case 8: //Delete a string completely from the list
         scanf(" %s", str); //Get input 
         StrList_remove(StrList, str);
-        free(str);
 
         break;
 
