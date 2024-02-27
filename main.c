@@ -20,10 +20,8 @@ char *inputString(size_t words) {
     while (wordCount < words) {
         ch = getchar();
         if (ch == ' ' || ch == '\n') {
-            if (len > 0) {
                 str[len++] = ' ';
                 wordCount++;
-            }
         } else {
             str[len++] = ch;
             if (len == size) { //Increasing memory allocation if reached the previous one
