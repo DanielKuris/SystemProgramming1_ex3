@@ -147,7 +147,8 @@ void StrList_printAt(const StrList* Strlist,int index){
 	{
 		current = current->_next;
 	}
-	printf("(%s)->",current->_data);
+	printf(" %s",current->_data);
+    printf("\n");
 }
 
 int StrList_printLen(const StrList* StrList){

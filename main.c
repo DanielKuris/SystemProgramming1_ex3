@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "StrList.h"
-#define SIZE 10
+#define SIZE 200
 
 // Helper function to get story input
 // Reading input of unknown length of strings
@@ -71,6 +71,8 @@ int main(){
 
      case 4: //Print the amount of nodes in the list
         printf(" %zu",StrList_size(StrList));
+        printf("\n");
+
 
         break;
 
@@ -84,6 +86,8 @@ int main(){
 
     case 6: //Print the amount of chars in the list
         printf(" %d",StrList_printLen(StrList));
+        printf("\n");
+
 
         break;
 
@@ -91,6 +95,8 @@ int main(){
     case 7: //Print how many times a string appears in the list
         scanf(" %s", str); //Get input 
         printf(" %d", StrList_count(StrList, str)); 
+        printf("\n");
+
         free(str);
 
         break;
@@ -129,7 +135,15 @@ int main(){
 
 
     case 13: //Returning 1 if sorted and 0 if not (lexicographic order)
-       StrList_isSorted(StrList);
+       if(StrList_isSorted(StrList))
+            printf("true");
+            printf("\n");
+
+        else
+            printf("false");
+            printf("\n");
+
+
         break; 
 
 
