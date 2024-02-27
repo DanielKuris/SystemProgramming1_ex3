@@ -98,7 +98,7 @@ int main(){
 
 
     case 6: //Print the amount of chars in the list
-        printf(" %zu",StrList_printLen(StrList));
+        printf(" %d",StrList_printLen(StrList));
 
         break;
 
