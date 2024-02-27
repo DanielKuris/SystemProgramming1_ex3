@@ -151,7 +151,7 @@ void StrList_printAt(const StrList* Strlist,int index){
 }
 
 int StrList_printLen(const StrList* StrList){
-   size_t totalChars = 0;
+   int totalChars = 0;
     Node* current = StrList->_head;
 
     while (current != NULL) {
