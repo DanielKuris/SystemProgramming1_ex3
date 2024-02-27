@@ -34,7 +34,7 @@ char *inputString() {
 int main(){
    StrList* StrList= StrList_alloc();
    int input;
-   char *str;
+   char *str[SIZE];
    int index;
 
    
@@ -49,9 +49,8 @@ int main(){
         scanf(" %d", &words); //Get amount of words
         
         for(int word = 0; word<words; word++){
-            str = inputString(); //Get input using helper function
+            scanf(" %s", str); //Get input 
             StrList_insertLast(StrList, str);
-            free(str);
         }
 
         break;
@@ -59,9 +58,8 @@ int main(){
 
     case 2: //Insert str at given index in list
         scanf(" %d",&index);
-        str = inputString(); //Get input using helper function
+        scanf(" %s", str); //Get input 
         StrList_insertAt(StrList, str, index);
-        free(str);
         break;
 
 
@@ -91,14 +89,14 @@ int main(){
 
 
     case 7: //Print how many times a string appears in the list
-        str = inputString(); // Get input using helper function
+        scanf(" %s", str); //Get input 
         printf(" %d", StrList_count(StrList, str)); 
         free(str);
 
         break;
 
     case 8: //Delete a string completely from the list
-        str = inputString(); // Get input using helper function
+        scanf(" %s", str); //Get input 
         StrList_remove(StrList, str);
         free(str);
 
