@@ -34,7 +34,7 @@ char *inputString() {
 int main(){
    StrList* StrList= StrList_alloc();
    int input;
-   char *str[SIZE];
+   char str[SIZE];
    int index;
 
    
