@@ -27,7 +27,7 @@ char *inputString(size_t words) {
                     str = (char *)realloc(str, size * sizeof(char));
                     if (str == NULL) {
                         printf("Memory reallocation failed\n");
-                    e   xit(EXIT_FAILURE);
+                        exit(EXIT_FAILURE);
                 }
             }
         } else {
