@@ -98,7 +98,7 @@ void StrList_insertAt(StrList* StrList, const char* data, int index) {
         return;
     }
 
-    Node* newNode = createNode(data);
+    Node* newNode = Node_alloc(data, NULL);
 
     if (index == 0) { // Insert at the beginning of the list
         newNode->_next = StrList->_head;
