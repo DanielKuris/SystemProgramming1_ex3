@@ -22,14 +22,23 @@ struct _StrList{
 
 Node* Node_alloc(const char* data, Node* next) {
     Node* p = (Node*)malloc(sizeof(Node));
+   // p->_data = data;
     p->_data = strdup(data);  // Copy the string
     p->_next = next;
     return p;
 }
 
-void Node_free(Node* node) {
-	free(node);
+	void Node_free(Node* n)
+{
+    if (n == NULL) // Check if n is NULL
+    {
+        return;
+    }
+
+    free(n->_data); // Free the string separately because it was allocated dynamically
+    free(n);
 }
+
 //------------------------------------------------
 
 StrList* StrList_alloc(){
@@ -41,21 +50,24 @@ StrList* StrList_alloc(){
 
 
 void StrList_free(StrList* StrList){
-    if (StrList==NULL) return;
-	Node* p1= StrList->_head;
+    if (StrList == NULL){
+        return;
+    } 
+	Node* p1 = StrList->_head;
 	Node* p2;
 	while(p1) {
-		p2= p1;
-		p1= p1->_next;
+		p2 = p1;
+		p1 = p1->_next;
 		Node_free(p2);
 	}
 	free(StrList);
+
 }
 
 size_t StrList_size(const StrList* StrList){
     return StrList->_size;
 }
-
+/*
 void StrList_insertLast(StrList* StrList, const char* data){
 
     Node *newNode = Node_alloc(data, NULL);
@@ -89,7 +101,22 @@ void StrList_insertLast(StrList* StrList, const char* data){
     }
 }
     
-   
+   */
+  void StrList_insertLast(StrList* StrList, const char* data){
+	char* str = strdup(data);
+	Node* newNode = Node_alloc(str,NULL);
+	if(StrList->_head == NULL){
+		StrList->_head = newNode;
+	}
+	else{
+		Node* p = StrList->_head;
+		while(p->_next != NULL){
+			p = p->_next;
+		}
+		p->_next = newNode;
+	}
+	++(StrList->_size);
+}
 
 // Function to insert a new node at the given index
 void StrList_insertAt(StrList* StrList, const char* data, int index) {
@@ -172,24 +199,22 @@ int StrList_printLen(const StrList* StrList){
     return totalChars;
 }
 
-int StrList_count(StrList *StrList, const char *data)
-{
-    int count = 0;
-    Node *current = StrList->_head;
-    char *str = StrList->_head->_data;
-    while (current!= NULL)
-    {
-        if (strcmp(str, data) == 0)
-        {
-            count++;
-        }
-        current = current->_next;
-        str = current->_data;
-    }
-    return count;
+int StrList_count(StrList* StrList, const char* data){//hadar
+	int count = 0;
+	Node* p = StrList->_head;
+	char *str = StrList->_head->_data;
+	while (p!=NULL){
+		if(strcmp(str,data) == 0){
+			count++;
+		}
+		str = p->_data;
+		p = p->_next;
+		}
+	return count;
 }
 
 void StrList_remove(StrList* StrList, const char* data){
+    /*
 char *str = StrList->_head->_data;
 	Node* p = StrList->_head;
 	Node* prev = NULL;
@@ -217,6 +242,8 @@ char *str = StrList->_head->_data;
 	}
 }
 
+*/
+ return 0;}
 
 void StrList_removeAt(StrList* StrList, int index){
   	Node* p = StrList->_head;

@@ -5,6 +5,7 @@
 // Helper function to get story input
 // Reading input of unknown length of strings
 // Running until recieved "words" amount of words.
+/*
 char *inputString() {
     size_t size = SIZE; // Start with some initial size
     char *str = (char *)malloc(size * sizeof(char));
@@ -29,7 +30,7 @@ char *inputString() {
     str[len] = '\0'; // Null-terminate the string
     return str;
 }
-
+*/
 
 int main(){
    StrList* StrList= StrList_alloc();
@@ -94,15 +95,14 @@ int main(){
 
     case 7: //Print how many times a string appears in the list
         scanf(" %s", str); //Get input 
-        printf(" %d", StrList_count(StrList, str)); 
+        printf("%d", StrList_count(StrList, str)); 
         printf("\n");
 
         break;
 
     case 8: //Delete a string completely from the list
         scanf(" %s", str); //Get input 
-        StrList_remove(StrList, str);
-
+       // StrList_remove(StrList, str);
         break;
 
 
@@ -147,6 +147,10 @@ int main(){
         StrList_free(StrList);
         break;
 
+
+     default:
+            return 0;
+            break;
     }
    }
    while(input!=0); //Do operation while the chosen operation is not 0
